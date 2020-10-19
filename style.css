@@ -1,0 +1,18 @@
+body {
+    background-image: url(weather.jpg);
+    background-size: cover;
+    background-position: top center;
+    text-align: center;
+    padding-bottom: 40px;
+    
+} 
+.header {
+    
+    color: white;
+    font-style: normal;
+    height: 50px;
+    text-align: center;
+    font-size: large;
+    font-size: 130px;
+    padding-bottom: 40px;
+}
