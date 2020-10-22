@@ -8,6 +8,7 @@
     <meta name="Description" content="Enter your description here" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+    
     <link rel="stylesheet" href="./style.css">
 
     <title>Weather Dashboard</title>
@@ -22,22 +23,25 @@
 <br><br><br><br><br>
         <input type="text" autocomplete="off" id="search-box" placeholder="Search for a city...">
         <button class="search"><i class="fa fa-search"></i></button>
+        <div id="current-day">Current Day</div>
         <section class="location">
-            <div class="city">Honolulu, HI</div>
-            <div class="date">Monday 3 August 2020</div>
+            <div id="city">Honolulu, HI</div>
         </section>
         <div class="current">
-            <div class="temp">20 <span>°C</span></div>
-            <div class="weather">Sunny</div>
-            <div class="hi-low">13°C/16°C</div>
+            <div id="temp">20 <span>°C</span></div>
+            <div id="weather">Sunny</div>
+            <div id="humidity">Sunny</div>
+            <div id="wind-speed">13°C/16°C</div>
+            <div id="UV-index">13°C/16°C</div>
         </div>
         <br><br>
         <div class="row">
-            <div class="col-md-2">
+            <div id="five-day"></div>
+            <!-- <div class="col-md-2">
                 <div class="card bg-light mb-3" style="max-width: 18rem;">
-                    <div class="card-header">Header</div>
+                    <div id="card-header">Header</div>
                     <div class="card-body">
-                        <h5 class="card-title">Light card title</h5>
+                        <div id="card-title1">Light card title</div>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of
                             the card's content.</p>
                     </div>
@@ -82,27 +86,22 @@
                             the card's content.</p>
                     </div>
                 </div>
-            </div>
+            </div> -->
             
             <div class="col-lg-2">
                 <ul class="list-group">
-                    <li class="list-group-item">Cras justo odio</li>
-                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                    <li class="list-group-item">Morbi leo risus</li>
-                    <li class="list-group-item">Porta ac consectetur ac</li>
-                    <li class="list-group-item">Vestibulum at eros</li>
+                    <li class="list-group-item">Searched city here</li>
+                    <li class="list-group-item">Searched city here</li>
+                    <li class="list-group-item">Searched city here</li>
+                    <li class="list-group-item">Searched city here</li>
+                    <li class="list-group-item">Searched city here</li>
                   </ul>
             </div>
 
-
-
-
-
-
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-            
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
             <script src="./script.js"></script>
         </div>
         </body>
