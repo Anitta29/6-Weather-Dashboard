@@ -29,7 +29,7 @@ $(document).ready(function () {
       var cityDiv = $("#city").text("Current city: " + response.name);
       var tempDiv = $("#temp").text("Temperature: " + response.main.temp);
       var weathDiv = $("#weather").text("Weather: " + response.weather[0].main);
-      var humidDiv = $("#humidity").text("Humidity: " + response.main.humidity);
+      var humidDiv = $("#humidity").text("Humidity: " + response.main.humidity  + "%");
       var windDiv = $("#wind-speed").text("Wind-speed: " + response.wind.speed);
       var uvIndex = $("#UV-index").text("UV-Index: " + response)
     });
@@ -44,6 +44,7 @@ $(document).ready(function () {
 
     // grabbing users input and storing it
     var cityInput = $("#search-box").val();
+    // cities.push(cityInput)
     var fivedayURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityInput + "&appid=" + APIkey
 
     $.ajax({
@@ -55,12 +56,19 @@ $(document).ready(function () {
 
       $("#five-day").empty();
 
-      var results = response.data;
+      var results = response.list;
+      console.log(results);
       for (var i = 0; i < 5; i++) {
 
         // Creating and storing a div tag
         var dayoneDiv = $("<div>");
-        var p = $("<p>").text("Temp: " + results[i].temp);
+
+        //results[0].main.temp
+        //results[1].main.temp
+        //results[2].main.temp
+        //results[i]
+        
+        var p = $("<p>").text("Temp: " + results[i].main.temp);
         dayoneDiv.append(p)
 
         $("#five-day").append(dayoneDiv)
@@ -85,4 +93,8 @@ $(document).ready(function () {
 
 
 
-// save searches at local storage (you need forloop, 
+// save searches at local storage and display them in search bar
+
+// convert Kelvin to Farenheit
+
+// make clear button
