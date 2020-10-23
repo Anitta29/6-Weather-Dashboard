@@ -8,84 +8,80 @@
     <meta name="Description" content="Enter your description here" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
-    
+
     <link rel="stylesheet" href="./style.css">
 
     <title>Weather Dashboard</title>
 
 </head>
-<div class="header">Weather Dashboard</div>
 
-<div>
+<body>
+    <div class="header">Weather Dashboard</div>
+
     <div class="container">
         <div class="app-wrap">
         </div>
-<br><br><br><br><br>
+        <br><br><br><br><br>
         <input type="text" autocomplete="off" id="search-box" placeholder="Search for a city...">
         <button class="search"><i class="fa fa-search"></i></button>
-        <div id="current-day">Current Day</div>
+        <div id="current-day"></div>
         <section class="location">
-            <div id="city">Honolulu, HI</div>
+            <div id="city"></div>
         </section>
         <div class="current">
-            <div id="temp">20 <span>°C</span></div>
-            <div id="weather">Sunny</div>
-            <div id="humidity">Sunny</div>
-            <div id="wind-speed">13°C/16°C</div>
-            <div id="UV-index">13°C/16°C</div>
+            <div id="temp"> <span></span></div>
+            <div id="weather"></div>
+            <div id="humidity"></div>
+            <div id="wind-speed"></div>
+            <div id="UV-index"></div>
         </div>
         <br><br>
         <div class="row">
-            <div id="five-day">
-                
-            </div>
+            <div id="five-day"></div>
+
+
             <div class="col-md-2">
                 <div class="card bg-light mb-3" style="max-width: 18rem;">
-                    <div id="card-header">Header</div>
+                    <h4 class="card-header1"></h4>
                     <div class="card-body">
-                        <div id="card-title1">Light card title</div>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
+                        <h5 id="card-title1"></h5>
+                        <p class="card-text"></p>
                     </div>
                 </div>
             </div>
             <div class="col-md-2">
                 <div class="card bg-light mb-3" style="max-width: 18rem;">
-                    <div class="card-header">Header</div>
+                    <h4 class="card-header2"></h4>
                     <div class="card-body">
-                        <h5 class="card-title">Light card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
+                        <h5 id="card-title2"></h5>
+                        <p class="card-text"></p>
                     </div>
                 </div>
             </div>
             <div class="col-md-2">
                 <div class="card bg-light mb-3" style="max-width: 18rem;">
-                    <div class="card-header">Header</div>
+                    <h4 class="card-header3"></h4>
                     <div class="card-body">
-                        <h5 class="card-title">Light card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
+                        <h5 id="card-title3"></h5>
+                        <p class="card-text"></p>
                     </div>
                 </div>
             </div>
             <div class="col-md-2">
                 <div class="card bg-light mb-3" style="max-width: 18rem;">
-                    <div class="card-header">Header</div>
+                    <h4 class="card-header4"></h4>
                     <div class="card-body">
-                        <h5 class="card-title">Light card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
+                        <h5 id="card-title4"></h5>
+                        <p class="card-text"></p>
                     </div>
                 </div>
             </div>
             <div class="col-md-2">
                 <div class="card bg-light mb-3" style="max-width: 18rem;">
-                    <div class="card-header">Header</div>
+                    <h4 class="card-header5"></h4>
                     <div class="card-body">
-                        <h5 class="card-title">Light card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
+                        <h5 id="card-title5"></h5>
+                        <p class="card-text"></p>
                     </div>
                 </div>
             </div>
@@ -96,15 +92,17 @@
                     <li class="list-group-item">Searched city here</li>
                     <li class="list-group-item">Searched city here</li>
                     <li class="list-group-item">Searched city here</li>
-                  </ul>
+                </ul>
             </div>
 
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-            <script src="./script.js"></script>
+            <script src="script.js"></script>
+
         </div>
-        </body>
+    </div>
+</body>
 
 </html>
