@@ -16,3 +16,6 @@ body {
     font-size: 130px;
     padding-bottom: 40px;
 }
+.card-body {
+    background-color: lightblue;
+}

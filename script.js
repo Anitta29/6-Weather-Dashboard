@@ -29,10 +29,12 @@ $(document).ready(function () {
       var cityDiv = $("#city").text(response.name);
       var tempDiv = $("#temp").text("Temperature: " + response.main.temp);
       var weathDiv = $("#weather").text("Weather: " + response.weather[0].icon);
-      var humidDiv = $("#humidity").text("Humidity: " + response.main.humidity  + "%");
+      var humidDiv = $("#humidity").text("Humidity: " + response.main.humidity + "%");
       var windDiv = $("#wind-speed").text("Wind-speed: " + response.wind.speed);
       var uvIndex = $("#UV-index").text("UV-Index: " + response)
+
     });
+    
 
   });
 
@@ -44,7 +46,7 @@ $(document).ready(function () {
 
     // grabbing users input and storing it
     var cityInput = $("#search-box").val();
-   
+
     var fivedayURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityInput + "&appid=" + APIkey
 
     $.ajax({
@@ -60,49 +62,49 @@ $(document).ready(function () {
       console.log(results);
       // for (var i = 0; i < 5; i++) {
 
-        // Creating and storing a div tag
-        var dayoneDiv = $("<div>")
-        var date = $("<p>").text(results[0].dt_txt);
-        var pTemp = $("<p>").text("Temp: " + results[0].main.temp);
-        var pWeath = $("<p>").text("Weather: " + results[0].weather[0].icon)
-        var pHumid = $("<p>").text("Humidity: " + results[0].main.humidity + "%")
-        dayoneDiv.append(date, pTemp, pWeath, pHumid)
-        $("#card-title1").append(dayoneDiv)
-        $(".card-header1").append(date)
+      // Creating and storing a div tag
+      var dayoneDiv = $("<div>")
+      var date = $("<p>").text(results[0].dt_txt);
+      var pTemp = $("<p>").text("Temp: " + results[0].main.temp);
+      var pWeath = $("<p>").text("Weather: " + results[0].weather[0].icon)
+      var pHumid = $("<p>").text("Humidity: " + results[0].main.humidity + "%")
+      dayoneDiv.append(date, pTemp, pWeath, pHumid)
+      $("#card-title1").append(dayoneDiv)
 
-        var daytwoDiv = $("<div>")
-        var date = $("<p>").text(results[1].dt_txt);
-        var pTemp = $("<p>").text("Temp: " + results[1].main.temp);
-        var pWeath = $("<p>").text("Weather: " + results[1].weather[0].icon)
-        var pHumid = $("<p>").text("Humidity: " + results[1].main.humidity + "%")
-        daytwoDiv.append(date, pTemp,pWeath, pHumid)
-        $("#card-title2").append(daytwoDiv)
 
-        var daytriDiv = $("<div>")
-        var date = $("<p>").text(results[2].dt_txt);
-        var pTemp = $("<p>").text("Temp: " + results[2].main.temp);
-        var pWeath = $("<p>").text("Weather: " + results[2].weather[0].icon)
-        var pHumid = $("<p>").text("Humidity: " + results[2].main.humidity + "%")
-        daytriDiv.append(date, pTemp, pWeath, pHumid)
-        $("#card-title3").append(daytriDiv)
+      var daytwoDiv = $("<div>")
+      var date = $("<p>").text(results[1].dt_txt);
+      var pTemp = $("<p>").text("Temp: " + results[1].main.temp);
+      var pWeath = $("<p>").text("Weather: " + results[1].weather[0].icon)
+      var pHumid = $("<p>").text("Humidity: " + results[1].main.humidity + "%")
+      daytwoDiv.append(date, pTemp, pWeath, pHumid)
+      $("#card-title2").append(daytwoDiv)
 
-        var dayfoDiv = $("<div>")
-        var date = $("<p>").text(results[3].dt_txt);
-        var pTemp = $("<p>").text("Temp: " + results[3].main.temp);
-        var pWeath = $("<p>").text("Weather: " + results[3].weather[0].icon)
-        var pHumid = $("<p>").text("Humidity: " + results[3].main.humidity + "%")
-        dayfoDiv.append(date, pTemp, pWeath, pHumid)
-        $("#card-title4").append(dayfoDiv)
+      var daytriDiv = $("<div>")
+      var date = $("<p>").text(results[2].dt_txt);
+      var pTemp = $("<p>").text("Temp: " + results[2].main.temp);
+      var pWeath = $("<p>").text("Weather: " + results[2].weather[0].icon)
+      var pHumid = $("<p>").text("Humidity: " + results[2].main.humidity + "%")
+      daytriDiv.append(date, pTemp, pWeath, pHumid)
+      $("#card-title3").append(daytriDiv)
 
-        var dayfiDiv = $("<div>")
-        var date = $("<p>").text(results[4].dt_txt);
-        var pTemp = $("<p>").text("Temp: " + results[4].main.temp);
-        var pWeath = $("<p>").text("Weather: " + results[4].weather[0].icon)
-        var pHumid = $("<p>").text("Humidity: " + results[4].main.humidity + "%")
-        dayfiDiv.append(date, pTemp, pWeath, pHumid)
-        $("#card-title5").append(dayfiDiv)
+      var dayfoDiv = $("<div>")
+      var date = $("<p>").text(results[3].dt_txt);
+      var pTemp = $("<p>").text("Temp: " + results[3].main.temp);
+      var pWeath = $("<p>").text("Weather: " + results[3].weather[0].icon)
+      var pHumid = $("<p>").text("Humidity: " + results[3].main.humidity + "%")
+      dayfoDiv.append(date, pTemp, pWeath, pHumid)
+      $("#card-title4").append(dayfoDiv)
 
-        
+      var dayfiDiv = $("<div>")
+      var date = $("<p>").text(results[4].dt_txt);
+      var pTemp = $("<p>").text("Temp: " + results[4].main.temp);
+      var pWeath = $("<p>").text("Weather: " + results[4].weather[0].icon)
+      var pHumid = $("<p>").text("Humidity: " + results[4].main.humidity + "%")
+      dayfiDiv.append(date, pTemp, pWeath, pHumid)
+      $("#card-title5").append(dayfiDiv)
+
+
 
 
       // }
@@ -110,35 +112,41 @@ $(document).ready(function () {
     })
   });
 
-var searchCity = [];
+  // var searchCity = [];
 
-for (var i = 0; i < searchCity.length; i++) {
+  // for (var i = 0; i < searchCity.length; i++) {
 
-  cityInput.push(searchCity);
-  window.localStorage(searchCity);
+  //   cityInput.push(searchCity);
+  //   window.localStorage(searchCity);
 
-  $("#list-group").text(searchCity).push(searchCity)
-
-
-  
+  //   $("#list-group").text(searchCity).push(searchCity)
 
 
 
 
-}
 
 
+
+  // }
+
+  $("#clear").on("click", function () {
+
+    $(".card-body").empty();
+    $(".location").empty();
+    $("#search-box").empty();
+
+  })
 
 });
 
 
 
 
-// save searches at local storage and display them in search bar
+// save searches at local storage and display them in search bar!!!!!!!!!
 
 // convert Kelvin to Farenheit
 
-// make icons
+// make icons for weather
 
 // UV index and colors
 
