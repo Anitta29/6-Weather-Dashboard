@@ -5,13 +5,21 @@ $(document).ready(function () {
   var currentUV = "http://api.openweathermap.org/data/2.5/uvi?lat={lat}&lon={lon}&appid={API key}";
   $("#current-day").text(moment().format('MMMM Do YYYY, h:mm:ss a'));
   // adding event listener to button-search
+  var citySearches = []
 
+  
   $("button").on("click", function () {
+
 
 
 
     // grabbing users input and storing it
     var cityInput = $("#search-box").val();
+
+    citySearches.push(cityInput)
+    console.log(citySearches)
+
+    localStorage.setItem("citySearches", JSON.stringify(citySearches))
 
 
     // building query URL link
@@ -91,7 +99,7 @@ $(document).ready(function () {
       var dayfoDiv = $("<div>")
       var date = $("<p>").text(results[3].dt_txt);
       var pTemp = $("<p>").text("Temp: " + results[3].main.temp);
-      var pWeath = $("<p>").text("Weather: " + results[3].weather[0].icon)
+      var pWeath = $("<img>").attr("src", "http://openweathermap.org/img/w/" + results[3].weather[0].icon + ".png")
       var pHumid = $("<p>").text("Humidity: " + results[3].main.humidity + "%")
       dayfoDiv.append(date, pTemp, pWeath, pHumid)
       $("#card-title4").append(dayfoDiv)
@@ -123,19 +131,22 @@ $(document).ready(function () {
 
 
 
-
-
-
-
   // }
 
   $("#clear").on("click", function () {
 
     $(".card-body").empty();
     $(".location").empty();
-    $("#search-box").empty();
+    // $("#search-box").empty();
+    $("#search-box").val("")
 
   })
+
+  var getPastSearches = JSON.parse(localStorage.getItem("citySearches")) || [];
+  console.log(getPastSearches)
+  
+  //grab items from local storage and prepend onto page
+  //$("#card1").prepend(getpastsearches[1])
 
 });
 
