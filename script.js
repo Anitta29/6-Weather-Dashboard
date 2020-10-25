@@ -9,8 +9,7 @@ $(document).ready(function () {
 
   $("#five-day").empty();
   $("button").on("click", function () {
-
-
+   
     // grabbing users input and storing it
     var cityInput = $("#search-box").val();
 
@@ -32,13 +31,14 @@ $(document).ready(function () {
       console.log(response)
 
       // displaying info (temp, humidity etc), use jquery, append to HTML
+      // var icon = $("<img>").attr("src", "http://openweathermap.org/img/w/" + response.weather[0].icon + ".png")
       var cityDiv = $("#city").text(response.name);
-      var tempDiv = $("#temp").text("Temperature: " + response.main.temp);
-      var weathDiv = $("#weather").text("Weather: " + response.weather[0].icon);
+      var tempDiv = $("#temp").text("Temperature: " + response.main.temp + "F");
+      var weathDiv = $("<img>").attr("src", "http://openweathermap.org/img/w/" + response.weather[0].icon + ".png");
       var humidDiv = $("#humidity").text("Humidity: " + response.main.humidity + "%");
       var windDiv = $("#wind-speed").text("Wind-speed: " + response.wind.speed);
       var uvIndex = $("#UV-index").text("UV-Index: " + response)
-
+      $("#weather").append(weathDiv)
     });
 
 
@@ -73,6 +73,7 @@ $(document).ready(function () {
       for (var i = 0; i < results.length; i++) {
         // variable for date and time string
         var dateTime = results[i].dt_txt
+
         // console.log(dateTime)
         // if time string includes noon put entire object in five day array
         if (dateTime.includes("12:00:00")) {
@@ -82,50 +83,44 @@ $(document).ready(function () {
 
       console.log(fiveDay)
 
-
-      // loop through five array and print each item to the page
-
-      // for (var i = 0; i < 5; i++) {
-
-      // Creating and storing a div tag
-
       moment(fiveDay[0].dt_txt).format('MMMM Do YYYY')
+
       var dayoneDiv = $("<div>")
       var date = $("<p>").text(moment(fiveDay[0].dt_txt).format('MMMM Do YYYY'));
-      var pTemp = $("<p>").text("Temp: " + fiveDay[0].main.temp);
-      var pWeath = $("<p>").text("Weather: " + fiveDay[0].weather[0].icon)
+      var pTemp = $("<p>").text("Temp: " + fiveDay[0].main.temp + "F");
+      var pWeath = $("<img>").attr("src", "http://openweathermap.org/img/w/" + fiveDay[0].weather[0].icon + ".png")
       var pHumid = $("<p>").text("Humidity: " + fiveDay[0].main.humidity + "%")
       dayoneDiv.append(date, pTemp, pWeath, pHumid)
       $("#card-title1").append(dayoneDiv)
 
       var daytwoDiv = $("<div>")
-      var date = $("<p>").text(fiveDay[1].dt_txt);
-      var pTemp = $("<p>").text("Temp: " + fiveDay[1].main.temp);
-      var pWeath = $("<p>").text("Weather: " + fiveDay[1].weather[0].icon)
+      var date = $("<p>").text(moment(fiveDay[1].dt_txt).format('MMMM Do YYYY'));
+      var pTemp = $("<p>").text("Temp: " + fiveDay[1].main.temp + "F");
+      var pWeath = $("<img>").attr("src", "http://openweathermap.org/img/w/" + fiveDay[1].weather[0].icon + ".png")
       var pHumid = $("<p>").text("Humidity: " + fiveDay[1].main.humidity + "%")
       daytwoDiv.append(date, pTemp, pWeath, pHumid)
       $("#card-title2").append(daytwoDiv)
 
       var daytriDiv = $("<div>")
-      var date = $("<p>").text(fiveDay[2].dt_txt);
-      var pTemp = $("<p>").text("Temp: " + fiveDay[2].main.temp);
-      var pWeath = $("<p>").text("Weather: " + fiveDay[2].weather[0].icon)
+      var date = $("<p>").text(moment(fiveDay[2].dt_txt).format('MMMM Do YYYY'));
+      var pTemp = $("<p>").text("Temp: " + fiveDay[2].main.temp + "F");
+      var pWeath = $("<img>").attr("src", "http://openweathermap.org/img/w/" + fiveDay[2].weather[0].icon + ".png")
       var pHumid = $("<p>").text("Humidity: " + fiveDay[2].main.humidity + "%")
       daytriDiv.append(date, pTemp, pWeath, pHumid)
       $("#card-title3").append(daytriDiv)
 
       var dayfoDiv = $("<div>")
-      var date = $("<p>").text(fiveDay[3].dt_txt);
-      var pTemp = $("<p>").text("Temp: " + fiveDay[3].main.temp);
+      var date = $("<p>").text(moment(fiveDay[3].dt_txt).format('MMMM Do YYYY'));
+      var pTemp = $("<p>").text("Temp: " + fiveDay[3].main.temp + "F");
       var pWeath = $("<img>").attr("src", "http://openweathermap.org/img/w/" + fiveDay[3].weather[0].icon + ".png")
       var pHumid = $("<p>").text("Humidity: " + fiveDay[3].main.humidity + "%")
       dayfoDiv.append(date, pTemp, pWeath, pHumid)
       $("#card-title4").append(dayfoDiv)
 
       var dayfiDiv = $("<div>")
-      var date = $("<p>").text(fiveDay[4].dt_txt);
-      var pTemp = $("<p>").text("Temp: " + fiveDay[4].main.temp);
-      var pWeath = $("<p>").text("Weather: " + fiveDay[4].weather[0].icon)
+      var date = $("<p>").text(moment(fiveDay[4].dt_txt).format('MMMM Do YYYY'));
+      var pTemp = $("<p>").text("Temp: " + fiveDay[4].main.temp + "F");
+      var pWeath = $("<img>").attr("src", "http://openweathermap.org/img/w/" + fiveDay[4].weather[0].icon + ".png")
       var pHumid = $("<p>").text("Humidity: " + fiveDay[4].main.humidity + "%")
       dayfiDiv.append(date, pTemp, pWeath, pHumid)
       $("#card-title5").append(dayfiDiv)
@@ -140,7 +135,7 @@ $(document).ready(function () {
     $(".location").empty();
     // $("#search-box").empty();
     $("#search-box").val()
-    $("#list-grouo").empty();
+    localStorage.clear();
 
 
   })
@@ -151,32 +146,33 @@ $(document).ready(function () {
 
 
 
-    for (const element of array) {
+    for (var i = 0; i < citySearches.length; i++) {
       var li = $("<li>");
-      var aTag = $("<a>");
+      var liText = $("<p>").text(citySearches[i]);
+      li.append(liText)
+      $("#list-group").append(liText);
+      $("#list-group").text(citySearches);
 
-      console.log(element)
-      li.addClass("list-group-item");
-      aTag.addClass("p-2").attr("href", "#")
-      aTag.text(element)
-      $("#list-group").append(li)
-      li.append(aTag)
+
+
+  //     // var aTag = $("<a>");
+  //     // li.textContent = cityInput[i].val()
+
+
+  //     console.log(citySearches)
+  //     // li.addClass("list-group-item");
+  //     // // aTag.addClass("p-2").attr("href", "#")
+  //     // aTag.text(element)
+  //     // $("#list-group").append(citySearches)
+
 
     }
 
-    console.log(array)
+  //   console.log(citySearches)
 
+}
+  // searchHistory();
 
-
-  }
-  searchHistory(citySearches);
-
-
-  // var getPastSearches = JSON.parse(localStorage.getItem("citySearches")) || [];
-  // console.log(getPastSearches)
-
-  //grab items from local storage and prepend onto page
-  //$("#card1").prepend(getpastsearches[1])
 
 });
 
@@ -184,10 +180,6 @@ $(document).ready(function () {
 
 
 // save searches at local storage and display them in search bar!!!!!!!!!
-
-// convert Kelvin to Farenheit
-
-// make icons for weather
 
 // UV index and colors
 
