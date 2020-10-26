@@ -147,7 +147,7 @@ searchHistory();
     $("#search-box").empty()
     localStorage.clear();
     $(".list-group").empty();
-    Program.restart();
+    // Program.restart();
 
 
   })

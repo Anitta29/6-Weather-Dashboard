@@ -23,12 +23,16 @@ body {
 }
 
 #current-day {
-    font-size: 60px;
+    font-size: 50px;
     color: lightblue; 
 }
 
 .location {
     font-size: 20px;
+}
+
+#city {
+    font-size: 40px;
 }
 
 
@@ -37,3 +41,9 @@ body {
     color: white;
     background-color: lightblue;
 }
+
+p {
+    font-size: 20px;
+    color: white;
+
+} 
