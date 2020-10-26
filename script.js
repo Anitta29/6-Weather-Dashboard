@@ -133,23 +133,29 @@ $(document).ready(function () {
 
     $(".card-body").empty();
     $(".location").empty();
-    // $("#search-box").empty();
-    $("#search-box").val()
+    $("#search-box").empty()
     localStorage.clear();
+    $(".list-group").empty();
+    Program.restart();
 
 
   })
 
   // creating function for search history
 
-  function searchHistory(array) {
+  function searchHistory() {
 
-    $("#list-group").empty();
+    $(".list-group").empty();
 
     for (var i = 0; i < citySearches.length; i++) {
-      var li = $("<li>").text(citySearches[i])
-      
-      $("#list-group").append(li);
+      var li = $("<li>");
+      var aTag = $("<a>");
+      li.addClass("list-group-item");
+      aTag.addClass("p-2").attr("href", "#")
+      aTag.text(citySearches[i])
+      li.append(aTag)
+
+      $(".list-group").prepend(li);
 
 
 
@@ -170,16 +176,17 @@ $(document).ready(function () {
     //   console.log(citySearches)
 
   }
-  // searchHistory();
+  searchHistory();
+
+  // $("button").on("click", function () {
+  //   Program.restart();
+  // };
 
 
 });
-
-
 
 
 // save searches at local storage and display them in search bar!!!!!!!!!
 
 // UV index and colors
 
-// make clear button
