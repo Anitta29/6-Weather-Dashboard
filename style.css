@@ -14,7 +14,7 @@ body {
     height: 50px;
     text-align: center;
     font-size: large;
-    font-size: 130px;
+    font-size: 120px;
     padding-bottom: 40px;
     font-family: 'Great Vibes', cursive;
 }
@@ -23,8 +23,15 @@ body {
 }
 
 #current-day {
-    font-size: 60px; 
+    font-size: 60px;
+    color: lightblue; 
 }
+
+.location {
+    font-size: 20px;
+}
+
+
 .list-group {
     font-size: 25px;
     color: white;

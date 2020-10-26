@@ -2,16 +2,17 @@
 $(document).ready(function () {
 
   var APIkey = "1454392d03a2419ff4eef4a809656678";
-  var currentUV = "http://api.openweathermap.org/data/2.5/uvi?lat={lat}&lon={lon}&appid={API key}";
-  $("#current-day").text(moment().format('MMMM Do YYYY'));
+
+  $("#current-day").text(moment().format('MMMM Do YYYY, hh:mm:ss a'));
   // adding event listener to button-search
   var citySearches = JSON.parse(localStorage.getItem("citySearches")) || [];
 
   $("#five-day").empty();
-  $("button").on("click", function () {
+  $("button").on("click", function (event) {
+    event.preventDefault();
 
     // grabbing users input and storing it
-    var cityInput = $("#search-box").val();
+    var cityInput = $("#search-box").val().trim();
 
     citySearches.push(cityInput)
     console.log(citySearches)
@@ -41,17 +42,18 @@ $(document).ready(function () {
       $("#weather").append(weathDiv)
     });
 
-
+searchHistory();
   });
 
   var fiveDays = [];
 
 
   // here goes another function for 5 day call
-  $("button").on("click", function () {
+  $("button").on("click", function (event) {
+    event.preventDefault();
 
     // grabbing users input and storing it
-    var cityInput = $("#search-box").val();
+    var cityInput = $("#search-box").val().trim();
 
     var fivedayURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityInput + "&appid=" + APIkey + "&units=imperial"
 
@@ -63,6 +65,7 @@ $(document).ready(function () {
 
 
       $("#five-day").empty();
+      
 
       var results = response.list;
       console.log(results);
@@ -91,7 +94,7 @@ $(document).ready(function () {
       var pWeath = $("<img>").attr("src", "http://openweathermap.org/img/w/" + fiveDay[0].weather[0].icon + ".png")
       var pHumid = $("<p>").text("Humidity: " + fiveDay[0].main.humidity + "%")
       dayoneDiv.append(date, pTemp, pWeath, pHumid)
-      $("#card-title1").append(dayoneDiv)
+      $("#card-title1").prepend(dayoneDiv)
 
       var daytwoDiv = $("<div>")
       var date = $("<p>").text(moment(fiveDay[1].dt_txt).format('MMMM Do YYYY'));
@@ -99,7 +102,7 @@ $(document).ready(function () {
       var pWeath = $("<img>").attr("src", "http://openweathermap.org/img/w/" + fiveDay[1].weather[0].icon + ".png")
       var pHumid = $("<p>").text("Humidity: " + fiveDay[1].main.humidity + "%")
       daytwoDiv.append(date, pTemp, pWeath, pHumid)
-      $("#card-title2").append(daytwoDiv)
+      $("#card-title2").prepend(daytwoDiv)
 
       var daytriDiv = $("<div>")
       var date = $("<p>").text(moment(fiveDay[2].dt_txt).format('MMMM Do YYYY'));
@@ -107,7 +110,7 @@ $(document).ready(function () {
       var pWeath = $("<img>").attr("src", "http://openweathermap.org/img/w/" + fiveDay[2].weather[0].icon + ".png")
       var pHumid = $("<p>").text("Humidity: " + fiveDay[2].main.humidity + "%")
       daytriDiv.append(date, pTemp, pWeath, pHumid)
-      $("#card-title3").append(daytriDiv)
+      $("#card-title3").prepend(daytriDiv)
 
       var dayfoDiv = $("<div>")
       var date = $("<p>").text(moment(fiveDay[3].dt_txt).format('MMMM Do YYYY'));
@@ -115,7 +118,7 @@ $(document).ready(function () {
       var pWeath = $("<img>").attr("src", "http://openweathermap.org/img/w/" + fiveDay[3].weather[0].icon + ".png")
       var pHumid = $("<p>").text("Humidity: " + fiveDay[3].main.humidity + "%")
       dayfoDiv.append(date, pTemp, pWeath, pHumid)
-      $("#card-title4").append(dayfoDiv)
+      $("#card-title4").prepend(dayfoDiv)
 
       var dayfiDiv = $("<div>")
       var date = $("<p>").text(moment(fiveDay[4].dt_txt).format('MMMM Do YYYY'));
@@ -123,11 +126,19 @@ $(document).ready(function () {
       var pWeath = $("<img>").attr("src", "http://openweathermap.org/img/w/" + fiveDay[4].weather[0].icon + ".png")
       var pHumid = $("<p>").text("Humidity: " + fiveDay[4].main.humidity + "%")
       dayfiDiv.append(date, pTemp, pWeath, pHumid)
-      $("#card-title5").append(dayfiDiv)
+      $("#card-title5").prepend(dayfiDiv)
 
     })
+    
   });
 
+  // $("button").on("click", function () {
+
+  //   // grabbing users input and storing it
+  //   var cityInput = $("#search-box").val();
+  //   var currentUV = "http://api.openweathermap.org/data/2.5/uvi?lat={lat}&lon={lon}&appid={API key}";
+
+  // });
 
   $("#clear").on("click", function () {
 

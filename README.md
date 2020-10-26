@@ -15,7 +15,7 @@ Weather Dashboard  - is an application, that let you find out the weather at any
 Nowadays weather forecast application is vital for tourist, poeple who are constantly travelling for business and just be aware of current weather conditions in any country.
 
 # Appearance 
-<img width="1440" alt="Screen Shot 2020-10-25 at 6 41 17 PM" src="https://user-images.githubusercontent.com/67982161/97121033-e764bb80-16f1-11eb-89e0-35b94b9d3c4e.png">
+<img width="1440" alt="Screen Shot 2020-10-26 at 5 35 43 PM" src="https://user-images.githubusercontent.com/67982161/97231517-eeeb9980-17b1-11eb-9941-ba22ef089a52.png">
 
 # Link
 https://anitta29.github.io/6-Weather-Dashboard/.
