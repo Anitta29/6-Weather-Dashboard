@@ -9,14 +9,14 @@ $(document).ready(function () {
 
   $("#five-day").empty();
   $("button").on("click", function () {
-   
+
     // grabbing users input and storing it
     var cityInput = $("#search-box").val();
 
     citySearches.push(cityInput)
     console.log(citySearches)
 
-    localStorage.setItem("citySearches", JSON.stringify(citySearches))
+    localStorage.setItem("citySearches", JSON.stringify(citySearches));
 
 
     // building query URL link
@@ -144,33 +144,32 @@ $(document).ready(function () {
 
   function searchHistory(array) {
 
-
+    $("#list-group").empty();
 
     for (var i = 0; i < citySearches.length; i++) {
-      var li = $("<li>");
-      var liText = $("<p>").text(citySearches[i]);
-      li.append(liText)
-      $("#list-group").append(liText);
-      $("#list-group").text(citySearches);
+      var li = $("<li>").text(citySearches[i])
+      
+      $("#list-group").append(li);
 
 
 
-  //     // var aTag = $("<a>");
-  //     // li.textContent = cityInput[i].val()
+
+      //     // var aTag = $("<a>");
+      //     // li.textContent = cityInput[i].val()
 
 
-  //     console.log(citySearches)
-  //     // li.addClass("list-group-item");
-  //     // // aTag.addClass("p-2").attr("href", "#")
-  //     // aTag.text(element)
-  //     // $("#list-group").append(citySearches)
+      //     console.log(citySearches)
+      //     // li.addClass("list-group-item");
+      //     // // aTag.addClass("p-2").attr("href", "#")
+      //     // aTag.text(element)
+      //     // $("#list-group").append(citySearches)
 
 
     }
 
-  //   console.log(citySearches)
+    //   console.log(citySearches)
 
-}
+  }
   // searchHistory();
 
 

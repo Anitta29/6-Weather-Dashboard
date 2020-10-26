@@ -4,6 +4,7 @@ body {
     background-position: top center;
     text-align: center;
     padding-bottom: 40px;
+    font-family: 'Cookie', cursive;
     
 } 
 .header  {
@@ -15,7 +16,12 @@ body {
     font-size: large;
     font-size: 130px;
     padding-bottom: 40px;
+    font-family: 'Great Vibes', cursive;
 }
 .card-body {
     background-color: lightblue;
+}
+
+#current-day {
+    font-size: 60px; 
 }
