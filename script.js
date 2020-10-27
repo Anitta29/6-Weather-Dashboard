@@ -8,7 +8,7 @@ $(document).ready(function () {
   var citySearches = JSON.parse(localStorage.getItem("citySearches")) || [];
 
   $("#five-day").empty();
-  $("button").on("click", function (event) {
+  $(".search").on("click", function (event) {
     event.preventDefault();
 
     // grabbing users input and storing it
@@ -21,7 +21,7 @@ $(document).ready(function () {
 
 
     // building query URL link
-    var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + cityInput + "&appid=" + APIkey + "&units=imperial"
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityInput + "&appid=" + APIkey + "&units=imperial"
 
     // callig Ajax
 
@@ -31,6 +31,8 @@ $(document).ready(function () {
     }).then(function (response) {
       console.log(response)
 
+
+      getUVIndex(response.coord.lat, response.coord.lon)
       // displaying info (temp, humidity etc), use jquery, append to HTML
       // var icon = $("<img>").attr("src", "http://openweathermap.org/img/w/" + response.weather[0].icon + ".png")
       var cityDiv = $("#city").text(response.name);
@@ -39,23 +41,23 @@ $(document).ready(function () {
       var humidDiv = $("#humidity").text("Humidity: " + response.main.humidity + "%");
       var windDiv = $("#wind-speed").text("Wind-speed: " + response.wind.speed);
       var uvIndex = $("#UV-index").text("UV-Index: " + response)
-      $("#weather").append(weathDiv)
+      $("#weather").html(weathDiv)
     });
 
-searchHistory();
+    searchHistory();
   });
 
   var fiveDays = [];
 
 
   // here goes another function for 5 day call
-  $("button").on("click", function (event) {
+  $(".search").on("click", function (event) {
     event.preventDefault();
 
     // grabbing users input and storing it
     var cityInput = $("#search-box").val().trim();
 
-    var fivedayURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityInput + "&appid=" + APIkey + "&units=imperial"
+    var fivedayURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityInput + "&appid=" + APIkey + "&units=imperial"
 
     $.ajax({
       url: fivedayURL,
@@ -65,7 +67,7 @@ searchHistory();
 
 
       $("#five-day").empty();
-      
+
 
       var results = response.list;
       console.log(results);
@@ -89,47 +91,52 @@ searchHistory();
       moment(fiveDay[0].dt_txt).format('MMMM Do YYYY')
 
       var dayoneDiv = $("<div>")
+      
       var date = $("<p>").text(moment(fiveDay[0].dt_txt).format('MMMM Do YYYY'));
       var pTemp = $("<p>").text("Temp: " + fiveDay[0].main.temp + "F");
       var pWeath = $("<img>").attr("src", "http://openweathermap.org/img/w/" + fiveDay[0].weather[0].icon + ".png")
       var pHumid = $("<p>").text("Humidity: " + fiveDay[0].main.humidity + "%")
       dayoneDiv.append(date, pTemp, pWeath, pHumid)
-      $("#card-title1").prepend(dayoneDiv)
+      $("#card-title1").empty().prepend(dayoneDiv)
 
       var daytwoDiv = $("<div>")
+      
       var date = $("<p>").text(moment(fiveDay[1].dt_txt).format('MMMM Do YYYY'));
       var pTemp = $("<p>").text("Temp: " + fiveDay[1].main.temp + "F");
       var pWeath = $("<img>").attr("src", "http://openweathermap.org/img/w/" + fiveDay[1].weather[0].icon + ".png")
       var pHumid = $("<p>").text("Humidity: " + fiveDay[1].main.humidity + "%")
       daytwoDiv.append(date, pTemp, pWeath, pHumid)
-      $("#card-title2").prepend(daytwoDiv)
+      $("#card-title2").empty().prepend(daytwoDiv)
 
       var daytriDiv = $("<div>")
+      
       var date = $("<p>").text(moment(fiveDay[2].dt_txt).format('MMMM Do YYYY'));
       var pTemp = $("<p>").text("Temp: " + fiveDay[2].main.temp + "F");
       var pWeath = $("<img>").attr("src", "http://openweathermap.org/img/w/" + fiveDay[2].weather[0].icon + ".png")
       var pHumid = $("<p>").text("Humidity: " + fiveDay[2].main.humidity + "%")
       daytriDiv.append(date, pTemp, pWeath, pHumid)
-      $("#card-title3").prepend(daytriDiv)
+      $("#card-title3").empty().prepend(daytriDiv)
 
       var dayfoDiv = $("<div>")
+      
       var date = $("<p>").text(moment(fiveDay[3].dt_txt).format('MMMM Do YYYY'));
       var pTemp = $("<p>").text("Temp: " + fiveDay[3].main.temp + "F");
       var pWeath = $("<img>").attr("src", "http://openweathermap.org/img/w/" + fiveDay[3].weather[0].icon + ".png")
       var pHumid = $("<p>").text("Humidity: " + fiveDay[3].main.humidity + "%")
       dayfoDiv.append(date, pTemp, pWeath, pHumid)
-      $("#card-title4").prepend(dayfoDiv)
+      $("#card-title4").empty().prepend(dayfoDiv)
 
       var dayfiDiv = $("<div>")
+      
       var date = $("<p>").text(moment(fiveDay[4].dt_txt).format('MMMM Do YYYY'));
       var pTemp = $("<p>").text("Temp: " + fiveDay[4].main.temp + "F");
       var pWeath = $("<img>").attr("src", "http://openweathermap.org/img/w/" + fiveDay[4].weather[0].icon + ".png")
       var pHumid = $("<p>").text("Humidity: " + fiveDay[4].main.humidity + "%")
       dayfiDiv.append(date, pTemp, pWeath, pHumid)
-      $("#card-title5").prepend(dayfiDiv)
+      $("#card-title5").empty().prepend(dayfiDiv)
 
     })
-    
+
   });
 
   // $("button").on("click", function () {
@@ -140,13 +147,20 @@ searchHistory();
 
   // });
 
-  $("#clear").on("click", function () {
+  $("#clear").on("click", function (event) {
+    event.preventDefault();
 
-    $(".card-body").empty();
+    $("#card-title1").empty();
+    $("#card-title2").empty();
+    $("#card-title3").empty();
+    $("#card-title4").empty();
+    $("#card-title5").empty();
+
     $(".location").empty();
     $("#search-box").empty()
     localStorage.clear();
     $(".list-group").empty();
+    location.reload();
     // Program.restart();
 
 
@@ -161,15 +175,17 @@ searchHistory();
     for (var i = 0; i < citySearches.length; i++) {
       var li = $("<li>");
       var aTag = $("<a>");
+  
       li.addClass("list-group-item");
-      aTag.addClass("p-2").attr("href", "#")
+      aTag.addClass("p-2").attr("href", "#").attr("id", citySearches[i])
       aTag.text(citySearches[i])
       li.append(aTag)
 
       $(".list-group").prepend(li);
 
 
-
+// add function to searchhictory
+// grab value
 
       //     // var aTag = $("<a>");
       //     // li.textContent = cityInput[i].val()
@@ -189,10 +205,27 @@ searchHistory();
   }
   searchHistory();
 
-  // $("button").on("click", function () {
-  //   Program.restart();
-  // };
 
+  function getUVIndex(lat, lon) {
+
+    var currentUV = `https://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=${APIkey}`;
+
+
+
+
+    $.ajax({
+      url: currentUV,
+      method: "GET",
+    }).then(function (response) {
+      console.log(response)
+      var uvI = response.value;
+      $("#uvIndex").text("UV Index: " + uvI);
+    });
+
+    // $("button").on("click", function () {
+    //   Program.restart();
+    // };
+  }
 
 });
 
@@ -201,3 +234,4 @@ searchHistory();
 
 // UV index and colors
 
+// grad the value of attr and run another ajax call
