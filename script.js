@@ -31,24 +31,25 @@ $(document).ready(function () {
     }).then(function (response) {
       console.log(response)
 
-
-      getUVIndex(response.coord.lat, response.coord.lon)
+      // getUVIndex(response.coord.lat, response.coord.lon)
       // displaying info (temp, humidity etc), use jquery, append to HTML
-      // var icon = $("<img>").attr("src", "http://openweathermap.org/img/w/" + response.weather[0].icon + ".png")
       var cityDiv = $("#city").text(response.name);
       var tempDiv = $("#temp").text("Temperature: " + response.main.temp + "F");
       var weathDiv = $("<img>").attr("src", "http://openweathermap.org/img/w/" + response.weather[0].icon + ".png");
       var humidDiv = $("#humidity").text("Humidity: " + response.main.humidity + "%");
       var windDiv = $("#wind-speed").text("Wind-speed: " + response.wind.speed);
-      var uvIndex = $("#UV-index").text("UV-Index: " + response)
+      // var uvIndex = $("#UV-index").text("UV-Index: " + response)
       $("#weather").html(weathDiv)
+
+
+      searchHistory();
+      getUVIndex(response.coord.lat, response.coord.lon)
     });
 
-    searchHistory();
+  
   });
 
   var fiveDays = [];
-
 
   // here goes another function for 5 day call
   $(".search").on("click", function (event) {
@@ -65,9 +66,7 @@ $(document).ready(function () {
     }).then(function (response) {
       console.log(response);
 
-
       $("#five-day").empty();
-
 
       var results = response.list;
       console.log(results);
@@ -139,14 +138,6 @@ $(document).ready(function () {
 
   });
 
-  // $("button").on("click", function () {
-
-  //   // grabbing users input and storing it
-  //   var cityInput = $("#search-box").val();
-  //   var currentUV = "http://api.openweathermap.org/data/2.5/uvi?lat={lat}&lon={lon}&appid={API key}";
-
-  // });
-
   $("#clear").on("click", function (event) {
     event.preventDefault();
 
@@ -161,9 +152,6 @@ $(document).ready(function () {
     localStorage.clear();
     $(".list-group").empty();
     location.reload();
-    // Program.restart();
-
-
   })
 
   // creating function for search history
@@ -183,54 +171,41 @@ $(document).ready(function () {
 
       $(".list-group").prepend(li);
 
-
-// add function to searchhictory
-// grab value
-
-      //     // var aTag = $("<a>");
-      //     // li.textContent = cityInput[i].val()
-
-
-      //     console.log(citySearches)
-      //     // li.addClass("list-group-item");
-      //     // // aTag.addClass("p-2").attr("href", "#")
-      //     // aTag.text(element)
-      //     // $("#list-group").append(citySearches)
-
-
     }
-
-    //   console.log(citySearches)
 
   }
   searchHistory();
 
-
+  
   function getUVIndex(lat, lon) {
+    // var lat = response.coord.lat
+    // var lon = response.coord.lon
 
     var currentUV = `https://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=${APIkey}`;
-
-
-
 
     $.ajax({
       url: currentUV,
       method: "GET",
+      dataType: "json"
     }).then(function (response) {
-      console.log(response)
+      console.log(response);
       var uvI = response.value;
-      $("#uvIndex").text("UV Index: " + uvI);
+      console.log(uvI)
+      
+      $("#UV-index").text("UV Index: " + uvI);
     });
 
-    // $("button").on("click", function () {
-    //   Program.restart();
-    // };
+  
   }
 
+  $(".list-group").on("click", "li", function(){
+var city = $(this).attr("data-name");
+searchHistory(city)
+
+  })
+ 
+
 });
-
-
-// save searches at local storage and display them in search bar!!!!!!!!!
 
 // UV index and colors
 
