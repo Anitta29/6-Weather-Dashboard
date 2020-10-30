@@ -47,3 +47,21 @@ p {
     color: white;
 
 } 
+.list-group-item {
+    background-color: lightblue;
+}
+
+a {
+    color: black;
+}
+a:hover {
+    color: white;
+}
+
+#search-box {
+    border-color:lightblue;
+}
+
+button {
+    border-color: lightblue;
+}

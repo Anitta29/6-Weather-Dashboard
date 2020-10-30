@@ -1,6 +1,5 @@
-// need to store my API key
 $(document).ready(function () {
-
+  // need to store my API key
   var APIkey = "1454392d03a2419ff4eef4a809656678";
 
   $("#current-day").text(moment().format('MMMM Do YYYY, hh:mm:ss a'));
@@ -11,15 +10,10 @@ $(document).ready(function () {
   $(".search").on("click", function (event) {
     event.preventDefault();
 
-    // grabbing users input and storing it
-    // var cityInput = $("#search-box").val().trim();
     currentAPI();
     fiveDayAPI();
   });
 
-  // run your function here
-
-  //searchfuncitonhere()
   function currentAPI(queryURL) {
     var cityInput = $("#search-box").val().trim();
 
@@ -27,8 +21,6 @@ $(document).ready(function () {
     console.log(citySearches)
 
     localStorage.setItem("citySearches", JSON.stringify(citySearches));
-
-
 
     // building query URL link
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityInput + "&appid=" + APIkey + "&units=imperial"
@@ -41,7 +33,6 @@ $(document).ready(function () {
     }).then(function (response) {
       console.log(response)
 
-
       // displaying info (temp, humidity etc), use jquery, append to HTML
       var cityDiv = $("#city").text(response.name);
       var tempDiv = $("#temp").text("Temperature: " + response.main.temp + "F");
@@ -52,21 +43,17 @@ $(document).ready(function () {
 
 
       searchHistory();
-      getUVIndex(response.coord.lat, response.coord.lon)
+      getUVIndex(response.coord.lat, response.coord.lon);
+      uvColorChange();
     });
 
   }
 
-
-
-
-  var fiveDays = [];
+  // var fiveDays = [];
   // function fiveDayAPI(fivedayURL) {
   // here goes another function for 5 day call
   // $(".search").on("click", function (event) {
   //   event.preventDefault();
-
-
 
   // });
 
@@ -189,13 +176,11 @@ $(document).ready(function () {
       li.append(aTag)
 
       $(".list-group").prepend(li);
-
     }
-
   }
   searchHistory();
 
-
+  // funvtion to get UV index, has to have separate API call
   function getUVIndex(lat, lon) {
 
     var currentUV = `https://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=${APIkey}`;
@@ -210,18 +195,31 @@ $(document).ready(function () {
       console.log(uvI)
 
       $("#UV-index").text("UV Index: " + uvI);
+      // creating function to change colors
+      function uvColorChange() {
+        if (uvI < 3) {
+          $("#UV-index").css("color", "#66b447");
+        } else if (uvI < 6) {
+
+          $("#UV-index").css("color", "#ffd300");
+        } else if (uvI < 9) {
+
+          $("#UV-index").css("color", "#ff631c");
+        } else {
+
+          $("#UV-index").css("color", "#ff0800");
+        }
+      };
+      uvColorChange();
     });
 
   }
 
   $(".list-group").on("click", "li", function () {
-    var city = $(this).attr("id");
-    currentAPI(queryURL);
-    fiveDayAPI(fivedayURL);
+    var city = $(this).attr("aTag");
+    currentAPI();
+    fiveDayAPI();
 
   })
 
-
 });
-
-// UV index and colors
