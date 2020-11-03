@@ -1,7 +1,7 @@
 $(document).ready(function () {
   // need to store my API key
   var APIkey = "1454392d03a2419ff4eef4a809656678";
-
+  var cityInput = "";
   $("#current-day").text(moment().format('MMMM Do YYYY, hh:mm:ss a'));
   // adding event listener to button-search
   var citySearches = JSON.parse(localStorage.getItem("citySearches")) || [];
@@ -15,7 +15,7 @@ $(document).ready(function () {
   });
 
   function currentAPI(queryURL) {
-    var cityInput = $("#search-box").val().trim();
+    cityInput = $("#search-box").val().trim();
 
     citySearches.push(cityInput)
     console.log(citySearches)
@@ -170,10 +170,14 @@ $(document).ready(function () {
       var li = $("<li>");
       var aTag = $("<a>");
 
-      li.addClass("list-group-item");
-      aTag.addClass("p-2").attr("href", "#").attr("id", citySearches[i])
-      aTag.text(citySearches[i])
-      li.append(aTag)
+      li.addClass("list-group-item city-list");
+      li.attr("data-city", citySearches[i]);
+      li.text(citySearches[i])
+
+
+      // aTag.addClass("p-2").attr("href", "#").attr("id", citySearches[i])
+      // aTag.text(citySearches[i])
+      // li.append(aTag)
 
       $(".list-group").prepend(li);
     }
@@ -215,11 +219,19 @@ $(document).ready(function () {
 
   }
 
+  // $("li").on("click", function () {
+
+  // $("#list-group").val($(this).text(citySearches)).
+  //   // var city = $(this).attr("data-name");
+  //   currentAPI();
+  //   // fiveDayAPI();
   $(".list-group").on("click", "li", function () {
-    var city = $(this).attr("aTag");
+    cityInput = $(this).attr("data-city");
+    console.log(cityInput)
     currentAPI();
     fiveDayAPI();
 
-  })
+
+  });
 
 });
