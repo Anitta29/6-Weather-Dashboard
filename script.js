@@ -10,19 +10,14 @@ $(document).ready(function () {
   $(".search").on("click", function (event) {
     cityInput = $('#search-box').val().trim()
     event.preventDefault();
-    // set here your local storage!
+    // my local storage goes on ON Click
     localStorage.setItem("citySearches", JSON.stringify(citySearches));
+    citySearches.push(cityInput)
     currentAPI(cityInput);
     fiveDayAPI(cityInput);
   });
 
   function currentAPI(cityInput) {
-
-
-    citySearches.push(cityInput)
-    console.log(citySearches)
-
-    // localStorage.setItem("citySearches", JSON.stringify(citySearches));
 
     // building query URL link
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityInput + "&appid=" + APIkey + "&units=imperial"
@@ -93,7 +88,6 @@ $(document).ready(function () {
         var pHumid = $("<p>").text("Humidity: " + fiveDay[i].main.humidity + "%")
         dayoneDiv.append(date, pTemp, pWeath, pHumid)
         $("#card-title" + [i]).empty().prepend(dayoneDiv)
-
       }
 
     });
